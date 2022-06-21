@@ -84,13 +84,7 @@ sess=tf.Session()
 sess.run(init)
 
 for i in range(2500):
-	batch= mnist.train.next_batch(50)
-	#sess.run(train_step, feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
-	sess.run(train_step, feed_dict={x: batch[0], y_: batch[1], keep_prob: 0.5})
-	if i%100 == 0:
-		acc_train= sess.run(acc, feed_dict={x: batch[0], y_: batch[1], keep_prob: 1.0})
-		print("step:", i)
-		print("acc_train:", acc_train)
+
 
 
 print("acc_pre",sess.run(acc, feed_dict={y_: mnist.test.images, h_fc2: mnist.test.labels, keep_prob: 1.0}))
