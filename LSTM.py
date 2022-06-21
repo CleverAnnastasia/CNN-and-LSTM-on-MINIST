@@ -85,23 +85,6 @@ acc=tf.reduce_mean(tf.cast(correct_pre, "float32"))
 init= tf.global_variables_initializer()
 
 with tf.Session() as sess:
-	sess.run(init)
-	for i in range(1000):
-		batch_x, batch_y= mnist.train.next_batch(batch_size)
-		batch_x= batch_x.reshape([batch_size, time_step, input_size_nn])
-		sess.run(train_step, feed_dict={x: batch_x, y: batch_y})
-		if i%100==0:
-			batch_x_pre, batch_y_pre= mnist.test.next_batch(batch_size)
-			batch_x_pre= batch_x_pre.reshape([batch_size, time_step, input_size_nn])
-			print('test acc')
-			print(sess.run(acc, feed_dict={x: batch_x_pre, y: batch_y_pre}))
-			print('test loss')
-			loss_train = sess.run(cost, feed_dict={x: batch_x_pre, y: batch_y_pre})
-			print(loss_train)
-			test_loss.append(loss_train/100.00)
-			print('train loss')
-			loss_test = sess.run(cost, feed_dict={x: batch_x, y: batch_y})
-			print(loss_test)
-			train_loss.append(loss_test/100.00)
+
 
 matplot_loss(train_loss, test_loss)
